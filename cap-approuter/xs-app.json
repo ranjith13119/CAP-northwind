@@ -1,0 +1,9 @@
+{
+	"authenticationMethod": "none",
+	"routes": [{
+		"source": "/northwind/(.*)",
+		"destination": "srv_api",
+		"authenticationType": "xsuaa"
+	}],
+	"welcomeFile": "/cp.portal"
+}

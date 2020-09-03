@@ -1,0 +1,37 @@
+<mvc:View controllerName="HTML.HTML.controller.Master" xmlns="sap.m" xmlns:f="sap.f" xmlns:mvc="sap.ui.core.mvc" xmlns:tnt="sap.tnt">
+	<f:DynamicPage id="dynamicPageId" toggleHeaderOnTitleClick="false" xmlns:u="sap.ui.unified" xmlns:l="sap.ui.layout">
+		<f:title>
+			<f:DynamicPageTitle>
+				<f:heading>
+					<Title text="Products" class="sapUiSmallMarginEnd sapUiTinyMarginTop"/>
+				</f:heading>
+				<f:navigationActions>
+					<Button icon="sap-icon://cart" type="Transparent" press=".onCartPress" tooltip="Cart Items"/>
+					<Button icon="sap-icon://customer-history" type="Transparent" press=".onHistoryPress" tooltip="Order History"/>
+				</f:navigationActions>
+			</f:DynamicPageTitle>
+		</f:title>
+		<f:content>
+			<VBox fitContainer="true">
+				<OverflowToolbar class="sapFDynamicPageAlignContent">
+					<ToolbarSpacer/>
+					<SearchField search=".onSearch" width="17.5rem" placeholder="Enter ProductName"/>
+					<OverflowToolbarButton icon="sap-icon://add" text="Add" type="Transparent" press=".onAdd"/>
+					<OverflowToolbarButton icon="sap-icon://sort" tooltip="{i18n>sort}" type="Transparent" press=".onSort"/>
+				</OverflowToolbar>
+				<List width="auto" class="sapFDynamicPageAlignContent" id="productsTable" items="{ path: '/Products' }" headerText="Products" growing="true"
+					growingThreshold="10">
+					<ObjectListItem title="{productName}" type="Active" press="onListItemPress"
+						number="{ parts:[{path:'unitPrice'}], type: 'sap.ui.model.type.Currency', formatOptions: {showMeasure: false} }" numberUnit="INR"
+						numberState="{= ${unitsInStock} > 0 ? 'Success' : 'Error' }">
+						<firstStatus>
+							<ObjectStatus text="{= ${unitsInStock} > 0 ? 'Available' : 'Out of Stock' }" state="{= ${unitsInStock} > 0 ? 'Success' : 'Error' }"/>
+						</firstStatus>
+						<ObjectAttribute text="{quantityPerUnit}"/>
+						<ObjectAttribute text="{describtion}"/>
+					</ObjectListItem>
+				</List>
+			</VBox>
+		</f:content>
+	</f:DynamicPage>
+</mvc:View>

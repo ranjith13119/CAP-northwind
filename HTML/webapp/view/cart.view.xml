@@ -1,0 +1,64 @@
+<mvc:View height="100%" controllerName="HTML.HTML.controller.cart" xmlns:u="sap.ui.unified" xmlns:l="sap.ui.layout"
+	xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:core="sap.ui.core">
+	<Page showHeader="false" enableScrolling="true" class="sapUiContentPadding" showNavButton="false">
+		<content>
+			<l:VerticalLayout>
+				<u:FileUploader id="fileUploader" uploadUrl="Image/picture" name="myFileUpload" tooltip="Upload your file to the local server" uploadComplete="handleUploadComplete"/>
+				<Button text="Upload File" press="handleUploadPress"/>
+			</l:VerticalLayout>
+			<Table id="cartTable" updateFinished=".onUpdateFinished" growing="true" growingThreshold="10" paste="onPaste"
+				items="{ path: '/cartItems',parameters:{expand:'products'} }">
+				<headerToolbar>
+					<OverflowToolbar >
+						<Title text="Products" level="H2"/>
+						<ToolbarSpacer/>
+						<ComboBox selectionChange=".handleChange" selectedKey="T" class="sapUiSmallMarginEnd">
+							<core:Item key="S" text="Ship"/>
+							<core:Item key="T" text="Train"/>
+							<core:Item key="TR" text="Truck"/>
+							<core:Item key="A" text="AirCraft"/>
+						</ComboBox>
+						<Button type="Emphasized" text="{FLP>/checkoutTotal}.00 ₹"/>
+					</OverflowToolbar>
+				</headerToolbar>
+				<columns>
+					<Column width="12em">
+						<Text text="ID"/>
+					</Column>
+					<Column minScreenWidth="Tablet" demandPopin="true" hAlign="Center">
+						<Text text="Quantity"/>
+					</Column>
+					<Column minScreenWidth="Tablet" demandPopin="true" hAlign="Center">
+						<Text text="ShipVia"/>
+					</Column>
+					<Column hAlign="Center">
+						<Text text="NetAmount"/>
+					</Column>
+					<Column hAlign="Center"/>
+				</columns>
+				<items>
+					<ColumnListItem>
+						<cells>
+							<ObjectIdentifier binding="{products}" title="{productName}" text="{quantityPerUnit}"/>
+							<StepInput value="{quantity}" min="1" max="{max}" width="50%" step="1" textAlign="Center" change="onChange"/>
+							<ObjectNumber number="{ parts:[{path:'netamount'}], type: 'sap.ui.model.type.Currency', formatOptions: {showMeasure: false} }"
+								numberUnit="₹"/>
+							<Button icon="sap-icon://sys-cancel" press="onCancelPress" tooltip="Remove From Cart"/>
+						</cells>
+					</ColumnListItem>
+				</items>
+			</Table>
+		</content>
+		<footer>
+			<OverflowToolbar>
+				<ToolbarSpacer/>
+				<Button text="Update Shipping Details" press=".onUpdate"/>
+				<Button text="Checkout" press="onCheckout" visible="true">
+					<layoutData>
+						<OverflowToolbarLayoutData moveToOverflow="false"/>
+					</layoutData>
+				</Button>
+			</OverflowToolbar>
+		</footer>
+	</Page>
+</mvc:View>

@@ -1,0 +1,5 @@
+productID;productName;quantityPerUnit;unitPrice;unitsInStock;discontinued;supplier.supplierID;category.categoryID
+1;"Chai";"10 boxes x 20 bags";18.0000;39;false;1;1
+2;"Bear";"24 - 12 oz bottles";19.0000;17;false;1;1
+3;"Aniseed Syrup";"12 - 550 ml bottles";10.0000;13;false;1;2
+4;"Chef Anton's Cajun Seasoning";"48 - 6 oz jars";22.0000;53;false;1;2

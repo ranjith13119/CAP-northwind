@@ -1,0 +1,2 @@
+ID;modifiedAt;createdAt;createdBy;modifiedBy;OrderNo;discount;orderDate;requiredDate;shippedDate;deliveredDate;customer.customerID;employee.employeeID;currency_code;price
+7e2f2640-6866-4dcf-8f4d-3027aa831cad;;2020-07-12;"ranjith13119@gmail.com";;1;;2020-07-12;2020-07-30;;;ranjith13119@gmail.com;1;EUR;18

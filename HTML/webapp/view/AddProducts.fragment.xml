@@ -1,0 +1,37 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:l="sap.ui.layout" xmlns:f="sap.ui.layout.form" xmlns:core="sap.ui.core">
+	<Dialog title=" ADD PRODUCT TO LIST">
+		<l:Grid defaultSpan="L12 M12 S12" width="auto" id="idGrid">
+			<l:content>
+				<f:SimpleForm id="productFormdisplay" minWidth="1024" maxContainerCols="2" editable="false" layout="ResponsiveGridLayout" title="Product Information"
+					labelSpanL="3" labelSpanM="3" emptySpanL="4" emptySpanM="4" columnsL="2" columnsM="2">
+					<f:content>
+						<Label text="Product ID"/>
+						<Input id="idProduct" type="Number"/>
+						<Label text="Product Name"/>
+						<Input id="idProductName"/>
+						<Label text="Describtion"/>
+						<Input id="idDescription"/>
+						<Label text="QuantityPerUnit"/>
+						<Input id="quantityPerUnit"/>
+						<Label text="UnitPrice"/>
+						<Input id="unitPrice" type="Number"/>
+						<Label text="UnitsInStock"/>
+						<Input id="unitsInStock" type="Number"/>
+						<Label text="Supplier Name"/>
+						<ComboBox items="{path:'/Suppliers'}" selectionChange=".onSupplierHandleChange" selectedKey="1" class="sapUiSmallMarginEnd">
+							<core:Item key="{supplierID}" text="{companyName}"/>
+						</ComboBox>
+						<Label text="Category Name"/>
+						<ComboBox items="{path:'/Categories'}" selectionChange=".onCategoryHandleChange" selectedKey="1" class="sapUiSmallMarginEnd">
+							<core:Item key="{categoryID}" text="{categoryName}"/>
+						</ComboBox>
+					</f:content>
+				</f:SimpleForm>
+			</l:content>
+		</l:Grid>
+		<buttons>
+			<Button text="Cancel" press="onCancel" type="Reject"/>
+			<Button text="Create" press="onCreate" type="Accept"/>
+		</buttons>
+	</Dialog>
+</core:FragmentDefinition>

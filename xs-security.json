@@ -1,0 +1,41 @@
+{
+	"xsappname": "cap",
+	"tenant-mode": "shared",
+	"description": "Security profile of called application",
+	"scopes": [{
+		"name": "$XSAPPNAME.customer",
+		"description": "customer"
+	}, {
+		"name": "$XSAPPNAME.Admin",
+		"description": "Admin"
+	}, {
+		"name": "$XSAPPNAME.Callback",
+		"description": "With this scope set, the callbacks for tenant onboarding, offboarding and getDependencies can be called.",
+		"grant-as-authority-to-apps": ["$XSAPPNAME(application, sap-provisioning, tenant-onboarding)"]
+	}],
+	"authorities": [
+		"$XSAPPNAME.Callback"
+	],
+	"attributes": [],
+	"role-templates": [{
+		"name": "customer",
+		"description": "generated",
+		"scope-references": [
+			"$XSAPPNAME.customer"
+		],
+		"attribute-references": []
+	}, {
+		"name": "Admin",
+		"description": "generated",
+		"scope-references": [
+			"$XSAPPNAME.Admin"
+		],
+		"attribute-references": []
+	}, {
+		"name": "Token_Exchange",
+		"description": "UAA",
+		"scope-references": [
+			"uaa.user"
+		]
+	}]
+}

@@ -1,0 +1,120 @@
+<mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" controllerName="HTML.HTML.controller.orderHistory"
+	xmlns:html="http://www.w3.org/1999/xhtml" xmlns:l="sap.ui.layout" xmlns:f="sap.ui.layout.form">
+	<App>
+		<pages>
+			<Page title="OrderHistory" class="sapUiContentPadding">
+				<content>
+					<List id="idList" items="{path:'/Orders', parameters:{expand:'customer,employee,ShippingAddress,items'}}" growing="true"
+						growingThreshold="10">
+						<items>
+							<CustomListItem>
+								<Panel expandable="true" expanded="false" headerText="Order No.:{OrderNo} (GUID : {ID})">
+									<content>
+										<VBox class="sapUiSmallMargin">
+											<f:Form id="OrderHistoryForm" editable="false">
+												<f:title>
+													<core:Title text="Order Details"/>
+												</f:title>
+												<f:layout>
+													<f:ResponsiveGridLayout labelSpanXL="4" labelSpanL="4" labelSpanM="4" labelSpanS="12" adjustLabelSpan="false" emptySpanXL="0" emptySpanL="0"
+														emptySpanM="0" emptySpanS="0" columnsXL="3" columnsL="2" columnsM="2" singleContainerFullSize="false"/>
+												</f:layout>
+												<f:formContainers>
+													<f:FormContainer title="Shipping Address">
+														<f:formElements>
+															<f:FormElement label="Street">
+																<f:fields>
+																	<Text binding="{ShippingAddress}" text="{street}"/>
+																	<Button text="Cancel Order" press="oncancelpress" visible="{= ${order_status} !== 'canceled' }"></Button>
+																</f:fields>
+															</f:FormElement>
+															<f:FormElement label="City">
+																<f:fields>
+																	<Text binding="{ShippingAddress}" text="{city}"/>
+																</f:fields>
+															</f:FormElement>
+															<f:FormElement label="Country">
+																<f:fields>
+																	<Text text="India"/>
+																</f:fields>
+															</f:FormElement>
+															<f:FormElement label="ZIP Code">
+																<f:fields>
+																	<Text binding="{ShippingAddress}" text="{postalcode}"/>
+																</f:fields>
+															</f:FormElement>
+														</f:formElements>
+													</f:FormContainer>
+													<f:FormContainer title="Details">
+														<f:formElements>
+															<f:FormElement label="Status">
+																<f:fields>
+																	<Text text="{order_status}"/>
+																</f:fields>
+															</f:FormElement>
+															<f:FormElement label="orderDate">
+																<f:fields>
+																	<Text text="{orderDate}"/>
+																</f:fields>
+															</f:FormElement>
+															<f:FormElement label="shippedDate">
+																<f:fields>
+																	<Text text="{shippedDate}"/>
+																</f:fields>
+															</f:FormElement>
+															<f:FormElement label="DeliveredDate">
+																<f:fields>
+																	<Text text="{deliveredDate}"/>
+																</f:fields>
+															</f:FormElement>
+															<f:FormElement label="Price">
+																<f:fields>
+																	<Text text="{price}"/>
+																</f:fields>
+															</f:FormElement>
+															<f:FormElement label="Employee Name">
+																<f:fields>
+																	<Text binding="{employee}" text="{FirstName} {LastName}"/>
+																</f:fields>
+															</f:FormElement>
+														</f:formElements>
+													</f:FormContainer>
+												</f:formContainers>
+											</f:Form>
+										</VBox>
+										<Table items="{path:'/Orders', parameters:{expand:'items'}}" growing="true" growingThreshold="2" paste="onPaste" id="producsTable">
+											<columns>
+												<Column width="12em">
+													<Text text="Product ID"/>
+												</Column>
+												<Column width="12em">
+													<Text text="Quantity"/>
+												</Column>
+												<Column width="12em">
+													<Text text="netAmount"/>
+												</Column>
+												<Column width="12em">
+													<Text text="ShipVia"/>
+												</Column>
+											</columns>
+											<items>
+												<ColumnListItem>
+													<cells>
+														<ObjectIdentifier binding="{items}" text="{products_productID}"/>
+														<ObjectIdentifier binding="{items}" text="{quantity}"/>
+														<ObjectIdentifier text="{items>/netamount}"/>
+														<ObjectIdentifier binding="{items}" text="{shipVia}"/>
+													</cells>
+												</ColumnListItem>
+											</items>
+										</Table>
+									</content>
+								</Panel>
+							</CustomListItem>
+						</items>
+					</List>
+				</content>
+			</Page>
+		</pages>
+	</App>
+</mvc:View>

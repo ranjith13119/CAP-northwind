@@ -1,0 +1,32 @@
+<mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:f="sap.f" xmlns:tnt="sap.tnt"
+	controllerName="HTML.HTML.controller.Order" xmlns:html="http://www.w3.org/1999/xhtml">
+	<Page enableScrolling="true" class="sapUiContentPadding" showNavButton="false">
+		<content>
+			<VBox fitContainer="true">
+				<List width="auto" items="{ path: '/cartItems', parameters: { expand: 'products' } }" updateFinished=".onUpdateFinished"
+					class="sapFDynamicPageAlignContent" id="reviewOrdertable" headerText="Review Order" growing="true" growingThreshold="10">
+					<ObjectListItem title="{products/productName}" type="Active" numberState="Success"
+						number="{ parts:[{path:'netamount'}], type: 'sap.ui.model.type.Currency', formatOptions: {showMeasure: false} }" numberUnit="INR">
+						<firstStatus>
+							<ObjectStatus text="Quantity: {quantity}" state="Success"/>
+						</firstStatus>
+						<ObjectAttribute text="{products/quantityPerUnit}"/>
+						<ObjectAttribute text="{shipVia}"/>
+					</ObjectListItem>
+				</List>
+			</VBox>
+		</content>
+		<footer>
+			<OverflowToolbar>
+				<ToolbarSpacer />
+				<Label text="Required Date"></Label>
+				<DatePicker id="DP11" width="150px" value="{FLP>/setDate}" valueFormat="yyyy-MM-dd" displayFormat="long" change="handleChange" class="sapUiSmallMarginend"/>
+				<Label text="OrderNo."></Label>
+				<Input id="productInput" placeholder="Enter Order No." liveChange="onliveChange" value="{FLP>/orderNo}" maxLength="10" type="Text"
+					width="150px"></Input>
+				<Button text="Price: {FLP>/checkoutTotal}₹" type="Emphasized"/>
+				<Button text="Order" type="Success" press="onOrderItems"></Button>
+			</OverflowToolbar>
+		</footer>
+	</Page>
+</mvc:View>

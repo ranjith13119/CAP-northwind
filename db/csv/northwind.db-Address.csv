@@ -1,0 +1,6 @@
+ID;parent_customerID;supplier_supplierID;street;city;postalcode;phone
+9f7410bb-b3f3-4809-afea-f75413c7dd0b;"RANJI";;"Kulala street";"Theni, India";"625515";"88.60.15.31"
+9f7410bb-b3f3-4809-afea-f75413c7dd0c;"ANATR";;"Ana Trujillo";"Avda. de la Constitución 2222, Mexico D.F., Mexico";"05021";"(5) 555-4729"
+9f7410bb-b3f3-4809-afea-f75413c7dd0d;"ANTON";;"Antonio Moreno";"México D.F.";"05023";"(5) 555-3932"
+9f7410bb-b3f3-4809-afea-f75413c7dd0e;"AROUT";;"Thomas Hardy, 120 Hanover Sq.";"WA1 1DP";"05023";"(171) 555-7788"
+9f7410bb-b3f3-4809-afea-f75413c7dd0f;"BLAUS";;"Hanna Moos, Forsterstr. 57";"Mannheim";"68306";"0621-08460"

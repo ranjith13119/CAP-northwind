@@ -189,6 +189,7 @@ module.exports = cds.service.impl((srv) => {
 			if (mediaObj.length <= 0) {
 				req.reject(404, 'Media not found for the ID')
 				return
+				
 			}
 			for (var i in mediaObj) {
 				decodedMedia = new Buffer(

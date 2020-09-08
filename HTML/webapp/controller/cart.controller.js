@@ -36,7 +36,7 @@ sap.ui.define([
 			}
 			reader.onload = function (e) {
 				// get an access to the content of the file
-				//this.content = e.currentTarget.result.replace("data:image/png;base64,", "");
+				// this.content = e.currentTarget.result.replace("data:image/png;base64,", "");
 				this.content = e.currentTarget.result
 				models.onImageUpload(this, onRequestCallback);
 

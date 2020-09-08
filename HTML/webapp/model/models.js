@@ -30,11 +30,11 @@ sap.ui.define([
 		onImageUpload : function (oComponent, callback) {
 			var oModel = oComponent.oOwnerComponent.getModel(),
 				payload = {
-					// "content" : btoa(encodeURI(oComponent.content)),
+				//	"content" : btoa(encodeURI(oComponent.content)),
 					"content" : oComponent.content,
 					"mediaType" : oComponent.fileType,
 					"filename" : oComponent.fileName
-				}
+				};
 			oModel.create("/Pictures", payload, {
 				success: function (response) {
 					callback(true);

@@ -10,7 +10,6 @@ entity Pictures {
   @Core.IsMediaType: true
   mediaType : String;
   filename : String;
- 
 }
 
 entity Image {

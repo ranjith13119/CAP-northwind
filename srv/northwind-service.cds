@@ -1,7 +1,7 @@
 using {northwind.db as db} from '../db/data-model';
 
-service Northwind  {
-	entity Pictures as projection on db.Pictures;
+service Northwind @(requires: ['authenticated-user']) {
+	@readonly entity Pictures as projection on db.Pictures;
 	entity Image as projection on db.Image;
     entity Customers as projection on db.Customer { *  }  ;  
     entity Suppliers as projection on db.Supplier { * } ; 
@@ -13,7 +13,6 @@ service Northwind  {
     entity cartItems as projection on db.cartItems;
     entity Order_items as projection on db.OrderItems { * } ;
     entity Orders as projection on db.Orders { * };
-
     action cancelOrder(ID : Orders.ID, reason:String);
     action UpdateShippingdetails ( custID : Customers.customerID, ship_mode : String);
     function fnTestCal( custID : String) returns String;

@@ -185,17 +185,22 @@ module.exports = cds.service.impl((srv) => {
 			const id = req.data.ID
 			console.log(id)
 			var tx = cds.transaction(req);
-			var mediaObj = await tx.run(SELECT.from(Pictures).where('ID =', id))
+			var mediaObj = await tx.run(SELECT.from(Pictures, ['content']).where('ID =', id))
 			if (mediaObj.length <= 0) {
 				req.reject(404, 'Media not found for the ID')
 				return
-				
 			}
+			var decodedMedia = "";
 			for (var i in mediaObj) {
-				decodedMedia = new Buffer(
-					mediaObj[i].content.split(';base64,').pop(),
-					'base64'
-				)
+				if (mediaObj[i].hasOwnProperty("content")) {
+					decodedMedia = new Buffer.from(
+						(mediaObj[i].content.toString()).split(';base64,').pop(),
+						'base64'
+					)
+				} else {
+						req.reject(404, 'Media not found for the ID')
+						return
+					}
 			}
 			return _formatResult(decodedMedia)
 		} else return next()

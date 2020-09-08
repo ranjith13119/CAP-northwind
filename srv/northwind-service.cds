@@ -1,8 +1,8 @@
 using {northwind.db as db} from '../db/data-model';
 
 service Northwind @(requires: ['authenticated-user']) {
-	@readonly entity Pictures as projection on db.Pictures;
-	entity Image as projection on db.Image;
+	@readonly entity Pictures as projection on db.Pictures;  
+	@readonly entity Image as projection on db.Image;    // added by ranjith - Trail Purpose
     entity Customers as projection on db.Customer { *  }  ;  
     entity Suppliers as projection on db.Supplier { * } ; 
     entity Employees as projection on db.Employee { * } ;
@@ -16,7 +16,7 @@ service Northwind @(requires: ['authenticated-user']) {
     action cancelOrder(ID : Orders.ID, reason:String);
     action UpdateShippingdetails ( custID : Customers.customerID, ship_mode : String);
     function fnTestCal( custID : String) returns String;
-} 
+}  
 
 // service Northwind  @(requires: ['authenticated-user']) {
 //     entity Customers @(restrict: [ { grant: ['READ', 'UPDATE', 'DELETE'], to: 'customer', where: 'customerID = $user' }, 
